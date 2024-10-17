@@ -90,8 +90,13 @@ Route::middleware(['cekLogin'])->group(function () {
     Route::resource('/tambahDokumenPengendalian-2', pengendalianController::class);
     Route::get('/dokumenPengendalian({id_pengendalian})', [pengendalianController::class, 'lihatdokumenpengendalian'])->name('dokumenpengendalian');
     Route::delete('/Pengendalian/hapusPengendalian{id_pengendalian}', [pengendalianController::class, 'destroy'])->name('hapusDokumenPengendalian');
-    Route::post('/Pengendalian/editDokumenPengendalian/{id_pengendalian}', [pengendalianController::class, 'edit'])->name('editDokumenPengendalian');
+    Route::get('/Pengendalian/editDokumenPengendalian/{id_pengendalian}', [pengendalianController::class, 'edit'])->name('editDokumenPengendalian');
+    Route::put('Pengendalian/updateDokumenPengendalian/{id_pengendalian}', [pengendalianController::class, 'update'])->name('updateDokumenPengendalian');
 
     // route untuk halaman menu Peningkatan CRUD
     Route::get('Peningkatan/StandarInstitusi',[peningkatanController::class, 'index'])->name('peningkatan');
+    Route::delete('/Peningkatan/hapusPeningkatan{id_peningkatan}', [peningkatanController::class, 'destroy'])->name('hapusDokumenPeningkatan');
+    Route::get('/Peningkatan/editDokumenPeningkatan/{id_peningkatan}', [peningkatanController::class, 'edit'])->name('editDokumenPeningkatan');
+    Route::put('Peningkatan/updateDokumenPeningkatan/{id_peningkatan}', [peningkatanController::class, 'update'])->name('updateDokumenPeningkatan');
+
 });

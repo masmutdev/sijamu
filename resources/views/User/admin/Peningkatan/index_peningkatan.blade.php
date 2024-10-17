@@ -87,24 +87,40 @@
                         <td>1</td>
                         <td class=" me-3" style="font-size: 13px">Pengaturan Standar Pendidikan Universitas Trunojoyo
                             Madura</td>
+                            @php
+                            // Ambil data file dari tabel file_p5 berdasarkan id_fp5
+                            $file1 = DB::table('file_p5')->where('id_fp5', 1)->value('files');
+                        @endphp
+
                         <td style="padding-left: 15px">
-                            <input type="radio" name="selected_item" value="Ada"> Ada
+                            <input type="radio" name="selected_item1" value="Ada" {{ ($file1 && $file1 !== '') ? 'checked' : '' }}> Ada
                             <span></span>
-                            <input type="radio" name="selected_item" value="Tidak Ada" style="margin-left: 1em"> Tidak Ada
+                            <input type="radio" name="selected_item1" value="Tidak Ada" style="margin-left: 1em" {{ (!$file1 || $file1 === '') ? 'checked' : '' }}> Tidak Ada
                         </td>
-                        <td style="padding-left: 90px"><span class="badge bg-label-info me-1"><i
-                                    class="bi bi-link-45deg">Dokumen</i></span></td>
+                        <td style="padding-left: 90px">
+                            @if($file1 && $file1 !== '')
+                                <span class="badge bg-label-info me-1">Dokumen</span>
+                            @else
+                                <span class="me-1">Masih Dalam Proses</span>
+                            @endif
+                        </td>
                         <td>
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
+                                    <a class="dropdown-item" href="{{ route('editDokumenPeningkatan', 1) }}"><i
                                             class="bx bx-edit-alt me-1"></i>
                                         Ubah</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
-                                        Hapus</a>
+                                    <form method="POST"
+                                        action="{{ route('hapusDokumenPeningkatan', 1) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="dropdown-item btn btn-outline-danger"><i
+                                                class="bx bx-trash me-1"></i>
+                                            Hapus</button>
+                                    </form>
                                 </div>
                             </div>
                         </td>
@@ -113,22 +129,39 @@
                         <td>2</td>
                         <td class=" me-3" style="font-size: 13px">Pengaturan Standar Penelitian Universitas Trunojoyo
                             Madura</td>
-                        <td style="padding-left: 15px">
-                            <input type="radio" name="selected_item" value="Ada"> Ada
-                            <span></span>
-                            <input type="radio" name="selected_item" value="Tidak Ada" style="margin-left: 1em"> Tidak Ada
+                            @php
+                                // Ambil data file dari tabel file_p5 berdasarkan id_fp5
+                                $file2 = DB::table('file_p5')->where('id_fp5', 2)->value('files');
+                            @endphp
+
+                            <td style="padding-left: 15px">
+                                <input type="radio" name="selected_item2" value="Ada" {{ ($file2 && $file2 !== '') ? 'checked' : '' }}> Ada
+                                <span></span>
+                                <input type="radio" name="selected_item2" value="Tidak Ada" style="margin-left: 1em" {{ (!$file2 || $file2 === '') ? 'checked' : '' }}> Tidak Ada
+                            </td>
+                        <td style="padding-left: 90px">
+                            @if($file2 && $file2 !== '')
+                                <span class="badge bg-label-info me-1">Dokumen</span>
+                            @else
+                                <span class="me-1">Masih Dalam Proses</span>
+                            @endif
                         </td>
-                        <td style="padding-left: 90px"><span class="badge bg-label-info me-1">Dokumen</span></td>
                         <td>
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-detail me-1"></i>
-                                        Detail</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit me-1"></i>
-                                        Edit</a>
+                                    <a class="dropdown-item" href="{{ route('editDokumenPeningkatan', 2) }}"><i class="bx bx-edit-alt me-1"></i>
+                                        Ubah</a>
+                                    <form method="POST"
+                                        action="{{ route('hapusDokumenPeningkatan', 2) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="dropdown-item btn btn-outline-danger"><i
+                                                class="bx bx-trash me-1"></i>
+                                            Hapus</button>
+                                    </form>
                                 </div>
                             </div>
                         </td>
@@ -137,13 +170,23 @@
                         <td>3</td>
                         <td class=" me-3" style="font-size: 13px">Pengaturan Standar Pengabdian Kepada Masyarakat
                             Universitas Trunojoyo Madura</td>
+                            @php
+                            // Ambil data file dari tabel file_p5 berdasarkan id_fp5
+                            $file3 = DB::table('file_p5')->where('id_fp5', 3)->value('files');
+                        @endphp
+
                         <td style="padding-left: 15px">
-                            <input type="radio" name="selected_item" value="Ada"> Ada
+                            <input type="radio" name="selected_item3" value="Ada" {{ ($file3 && $file3 !== '') ? 'checked' : '' }}> Ada
                             <span></span>
-                            <input type="radio" name="selected_item" value="Tidak Ada" style="margin-left: 1em"> Tidak
-                            Ada
+                            <input type="radio" name="selected_item3" value="Tidak Ada" style="margin-left: 1em" {{ (!$file3 || $file3 === '') ? 'checked' : '' }}> Tidak Ada
                         </td>
-                        <td style="padding-left: 90px"><span class="badge bg-label-info me-1">Dokumen</span></td>
+                        <td style="padding-left: 90px">
+                            @if($file3 && $file3 !== '')
+                                <span class="badge bg-label-info me-1">Dokumen</span>
+                            @else
+                                <span class="me-1">Masih Dalam Proses</span>
+                            @endif
+                        </td>
                         <td>
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -151,11 +194,17 @@
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="bx bx-detail me-1"></i>
-                                        Detail</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit me-1"></i>
-                                        Edit</a>
+                                    <a class="dropdown-item" href="{{ route('editDokumenPeningkatan', 3) }}"><i
+                                            class="bx bx-edit-alt me-1"></i>
+                                        Ubah</a>
+                                    <form method="POST"
+                                        action="{{ route('hapusDokumenPeningkatan', 3) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="dropdown-item btn btn-outline-danger"><i
+                                                class="bx bx-trash me-1"></i>
+                                            Hapus</button>
+                                    </form>
                                 </div>
                             </div>
                         </td>
@@ -163,13 +212,23 @@
                     <tr>
                         <td>4</td>
                         <td class=" me-3" style="font-size: 13px">Standar di aspek lainnya</td>
+                        @php
+                            // Ambil data file dari tabel file_p5 berdasarkan id_fp5
+                            $file4 = DB::table('file_p5')->where('id_fp5', 4)->value('files');
+                        @endphp
+
                         <td style="padding-left: 15px">
-                            <input type="radio" name="selected_item" value="Ada"> Ada
+                            <input type="radio" name="selected_item4" value="Ada" {{ ($file4 && $file4 !== '') ? 'checked' : '' }}> Ada
                             <span></span>
-                            <input type="radio" name="selected_item" value="Tidak Ada" style="margin-left: 1em"> Tidak
-                            Ada
+                            <input type="radio" name="selected_item4" value="Tidak Ada" style="margin-left: 1em" {{ (!$file4 || $file4 === '') ? 'checked' : '' }}> Tidak Ada
                         </td>
-                        <td style="padding-left: 90px"><span class="badge bg-label-info me-1">Dokumen</span></td>
+                        <td style="padding-left: 90px">
+                            @if($file4 && $file4 !== '')
+                                <span class="badge bg-label-info me-1">Dokumen</span>
+                            @else
+                                <span class="me-1">Masih Dalam Proses</span>
+                            @endif
+                        </td>
                         <td>
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -177,10 +236,16 @@
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="bx bx-detail me-1"></i>Detail</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit me-1"></i>
-                                        Edit</a>
+                                    <a class="dropdown-item" href="{{ route('editDokumenPeningkatan', 4) }}"><i
+                                            class="bx bx-edit-alt me-1"></i>Ubah</a>
+                                    <form method="POST"
+                                            action="{{ route('hapusDokumenPeningkatan', 4) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="dropdown-item btn btn-outline-danger"><i
+                                                    class="bx bx-trash me-1"></i>
+                                                Hapus</button>
+                                        </form>
                                 </div>
                             </div>
                         </td>
@@ -191,13 +256,23 @@
                             <li class=" me-3" style="font-size: 13px">Pengaturan Standar Layanan Kemahasiswaan
                                 Universitas Trunojoyo Madura</li>
                         </td>
+                        @php
+                            // Ambil data file dari tabel file_p5 berdasarkan id_fp5
+                            $file5 = DB::table('file_p5')->where('id_fp5', 5)->value('files');
+                        @endphp
+
                         <td style="padding-left: 15px">
-                            <input type="radio" name="selected_item" value="Ada"> Ada
+                            <input type="radio" name="selected_item5" value="Ada" {{ ($file5 && $file5 !== '') ? 'checked' : '' }}> Ada
                             <span></span>
-                            <input type="radio" name="selected_item" value="Tidak Ada" style="margin-left: 1em"> Tidak
-                            Ada
+                            <input type="radio" name="selected_item5" value="Tidak Ada" style="margin-left: 1em" {{ (!$file5 || $file5 === '') ? 'checked' : '' }}> Tidak Ada
                         </td>
-                        <td style="padding-left: 90px"><span class="badge bg-label-info me-1">Dokumen</span></td>
+                        <td style="padding-left: 90px">
+                            @if($file5 && $file5 !== '')
+                                <span class="badge bg-label-info me-1">Dokumen</span>
+                            @else
+                                <span class="me-1">Masih Dalam Proses</span>
+                            @endif
+                        </td>
                         <td>
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -205,10 +280,16 @@
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="bx bx-detail me-1"></i> Detail</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit me-1"></i>
-                                        Edit</a>
+                                    <a class="dropdown-item" href="{{ route('editDokumenPeningkatan', 5) }}"><i
+                                            class="bx bx-edit-alt me-1"></i> Ubah</a>
+                                    <form method="POST"
+                                            action="{{ route('hapusDokumenPeningkatan', 5) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="dropdown-item btn btn-outline-danger"><i
+                                                    class="bx bx-trash me-1"></i>
+                                                Hapus</button>
+                                        </form>
                                 </div>
                             </div>
                         </td>
@@ -219,13 +300,23 @@
                             <li class=" me-3" style="font-size: 13px">Pengaturan Standar Layanan Kerjasama Universitas
                                 Trunojoyo Madura</li>
                         </td>
+                        @php
+                            // Ambil data file dari tabel file_p5 berdasarkan id_fp5
+                            $file6 = DB::table('file_p5')->where('id_fp5', 6)->value('files');
+                        @endphp
+
                         <td style="padding-left: 15px">
-                            <input type="radio" name="selected_item" value="Ada"> Ada
+                            <input type="radio" name="selected_item6" value="Ada" {{ ($file6 && $file6 !== '') ? 'checked' : '' }}> Ada
                             <span></span>
-                            <input type="radio" name="selected_item" value="Tidak Ada" style="margin-left: 1em"> Tidak
-                            Ada
+                            <input type="radio" name="selected_item6" value="Tidak Ada" style="margin-left: 1em" {{ (!$file6 || $file6 === '') ? 'checked' : '' }}> Tidak Ada
                         </td>
-                        <td style="padding-left: 90px"><span class="badge bg-label-info me-1">Dokumen</span></td>
+                        <td style="padding-left: 90px">
+                            @if($file6 && $file6 !== '')
+                                <span class="badge bg-label-info me-1">Dokumen</span>
+                            @else
+                                <span class="me-1">Masih Dalam Proses</span>
+                            @endif
+                        </td>
                         <td>
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -233,10 +324,16 @@
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="bx bx-detail me-1"></i> Detail</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit me-1"></i>
-                                        Edit</a>
+                                    <a class="dropdown-item" href="{{ route('editDokumenPeningkatan', 6) }}"><i
+                                            class="bx bx-edit-alt me-1"></i> Ubah</a>
+                                        <form method="POST"
+                                            action="{{ route('hapusDokumenPeningkatan', 6) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="dropdown-item btn btn-outline-danger"><i
+                                                    class="bx bx-trash me-1"></i>
+                                                Hapus</button>
+                                        </form>
                                 </div>
                             </div>
                         </td>
@@ -247,13 +344,23 @@
                             <li class="me-3" style="font-size: 13px">Pengaturan Standar Tata Kelola Universitas
                                 Trunojoyo Madura</li>
                         </td>
+                        @php
+                            // Ambil data file dari tabel file_p5 berdasarkan id_fp5
+                            $file7 = DB::table('file_p5')->where('id_fp5', 7)->value('files');
+                        @endphp
+
                         <td style="padding-left: 15px">
-                            <input type="radio" name="selected_item" value="Ada"> Ada
+                            <input type="radio" name="selected_item7" value="Ada" {{ ($file7 && $file7 !== '') ? 'checked' : '' }}> Ada
                             <span></span>
-                            <input type="radio" name="selected_item" value="Tidak Ada" style="margin-left: 1em"> Tidak
-                            Ada
+                            <input type="radio" name="selected_item7" value="Tidak Ada" style="margin-left: 1em" {{ (!$file7 || $file7 === '') ? 'checked' : '' }}> Tidak Ada
                         </td>
-                        <td style="padding-left: 90px"><span class="badge bg-label-info me-1">Dokumen</span></td>
+                        <td style="padding-left: 90px">
+                            @if($file7 && $file7 !== '')
+                                <span class="badge bg-label-info me-1">Dokumen</span>
+                            @else
+                                <span class="me-1">Masih Dalam Proses</span>
+                            @endif
+                        </td>
                         <td>
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -261,10 +368,16 @@
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="bx bx-detail me-1"></i> Detail</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit me-1"></i>
-                                        Edit</a>
+                                    <a class="dropdown-item" href="{{ route('editDokumenPeningkatan', 7) }}"><i
+                                            class="bx bx-edit-alt me-1"></i> Ubah</a>
+                                        <form method="POST"
+                                            action="{{ route('hapusDokumenPeningkatan', 7) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="dropdown-item btn btn-outline-danger"><i
+                                                    class="bx bx-trash me-1"></i>
+                                                Hapus</button>
+                                        </form>
                                 </div>
                             </div>
                         </td>
