@@ -48,7 +48,7 @@ class perangkatController extends Controller
             $validatedData = $request->validate([
                 'submenu_penetapan' => 'required|in:perangkatspmi',
                 'nama_filep1' => 'required|string',
-                'files.*' => 'required|mimes:doc,docx,xls,xlsx,pdf|max:2048',
+                'files.*' => 'nullable|mimes:doc,docx,xls,xlsx,pdf|max:2048',
             ]);
 
             // Simpan file-file
@@ -81,6 +81,30 @@ class perangkatController extends Controller
                         'updated_at' => now(),
                     ]);
                 }
+            } else {
+                // Jika tidak ada file, tetap simpan dengan field file kosong
+                $fileP1Id = DB::table('file_p1')->insertGetId([
+                    'files' => '', // field file diset kosong
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                // Simpan data ke tabel NamaFileP1 menggunakan query builder
+                $namaFileP1Id = DB::table('nama_file_p1')->insertGetId([
+                    'nama_filep1' => $validatedData['nama_filep1'],
+                    'id_fp1' => $fileP1Id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                // Simpan data ke tabel Penetapan menggunakan query builder
+                DB::table('penetapans')->insert([
+                    'submenu_penetapan' => $validatedData['submenu_penetapan'],
+                    'id_fp1' => $fileP1Id,
+                    'id_nfp1' => $namaFileP1Id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
             }
 
             // Tampilkan pesan sukses
@@ -92,6 +116,7 @@ class perangkatController extends Controller
             return redirect()->back()->withInput();
         }
     }
+
 
 
     public function lihatdokumenperangkat($id_penetapan)

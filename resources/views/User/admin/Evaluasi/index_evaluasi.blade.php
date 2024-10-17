@@ -81,7 +81,7 @@
                 <li><a class="dropdown-item" href="javascript:void(0);">2024-2025</a></li>
             </ul>
         </h5>
-        <div class="table text-nowrap" id="horizontal-example">
+        <div class="table text-nowrap" id="horizontal-example" style="height: 200px;">
             <table class="table table-bordered">
                 <thead class="table-purple">
                     <tr>
