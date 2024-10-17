@@ -86,6 +86,11 @@ Route::middleware(['cekLogin'])->group(function () {
 
     // route untuk halaman menu Pengendalian CRUD
     Route::get('/Pengendalian/Standar/RTM',[pengendalianController::class, 'index'])->name('pengendalian');
+    Route::get('/Pengendalian/tambahDokumenPengendalian',[pengendalianController::class, 'create'])->name('tambahDokumenPengendalian');
+    Route::resource('/tambahDokumenPengendalian-2', pengendalianController::class);
+    Route::get('/dokumenPengendalian({id_pengendalian})', [pengendalianController::class, 'lihatdokumenpengendalian'])->name('dokumenpengendalian');
+    Route::delete('/Pengendalian/hapusPengendalian{id_pengendalian}', [pengendalianController::class, 'destroy'])->name('hapusDokumenPengendalian');
+    Route::post('/Pengendalian/editDokumenPengendalian/{id_pengendalian}', [pengendalianController::class, 'edit'])->name('editDokumenPengendalian');
 
     // route untuk halaman menu Peningkatan CRUD
     Route::get('Peningkatan/StandarInstitusi',[peningkatanController::class, 'index'])->name('peningkatan');

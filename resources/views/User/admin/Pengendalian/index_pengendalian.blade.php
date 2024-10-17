@@ -96,7 +96,7 @@
                     @foreach ($pengendalian as $row)
                     <tr>
                         <td><i></i>{{ $row->bidang_standar }}</td>
-                        <td><i></i>{{ $row->program_studi }}</td>
+                        <td><i></i>{{ $row->nama_prodi }}</td>
                         <td>
                             @php
                                 $files = json_decode($row->laporan_rtm, true);
@@ -161,7 +161,7 @@
         </div>
     </div>
     <div class="demo-inline-spacing">
-        <button type="button" class="btn btn-light" onclick="window.location.href=''">+
+        <button type="button" class="btn btn-light" onclick="window.location.href='{{ route('tambahDokumenPengendalian') }}'">+
             Tambah Bentuk Pengendalian</button>
         @if (session('success'))
             <div>{{ @session('success') }}</div>

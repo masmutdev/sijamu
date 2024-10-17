@@ -21,10 +21,10 @@
                         <h5 class="mb-0"></h5>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('tambahDokumenPengendalian-2') }}" enctype="multipart/form-data">
                             @csrf
-                            <label class="form-label" for="">Nama Dokumen</label>
-                            <select class="form-select" id="namaDokumen_evaluasi" name="namaDokumen_evaluasi" required
+                            <label class="form-label" for="">Nama Bidang Pengaturan Standar</label>
+                            <select class="form-select" id="namaDokumen_evaluasi" name="bidang_standar" required
                                 onchange="toggleManualInput()">
                                 <option value="" disabled selected>Pilih Nama Dokumen</option>
                                 <option value="Standar Pendidikan">Standar Pendidikan Universitas Trunojoyo Madura</option>
@@ -35,7 +35,7 @@
                             </select>
                             <div class="mb-3">
                                 <label class="form-label" for="">Program Studi</label>
-                                <select class="form-select" id="program_studi" name="program_studi" required>
+                                <select class="form-select" id="nama_prodi" name="nama_prodi" required>
                                     <option value="" disabled selected>Pilih Program Studi</option>
                                     <option value="Pendidikan Bahasa dan Sastra Indonesia">Pendidikan Bahasa dan Sastra
                                         Indonesia
@@ -50,24 +50,18 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label" for="">Tanggal Terakhir Dilakukan</label>
-                                <input type="date" class="form-control" id="tanggal_terakhir_dilakukan"
-                                    name="tanggal_terakhir_dilakukan" />
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="">Tanggal Diperbarui</label>
-                                <input type="date" class="form-control" id="tanggal_diperbarui"
-                                    name="tanggal_diperbarui" />
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="formFileMultiple">Unggah Dokumen</label>
+                                <label class="form-label" for="formFileMultiple">Laporan RTM</label>
                                 <input type="file" class="form-control" id="formFileMultiple" multiple
-                                    name="unggahan_dokumen[]" />
+                                    name="laporan_rtm[]" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="formFileMultiple">Laporan RTL</label>
+                                <input type="file" class="form-control" id="formFileMultiple" multiple
+                                    name="laporan_rtl[]" />
                             </div>
                             <div>
-                                <button type="submit" class="btn btn-primary">{{ isset($evaluasi) }}Kirim</button>
+                                <button type="submit" class="btn btn-primary">{{ isset($pengendalian) }}Kirim</button>
                         </form>
                     </div>
                 </div>
