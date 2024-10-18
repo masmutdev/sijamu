@@ -99,7 +99,7 @@
                             </td>
                             <td>
                                 @if (!empty($row->files))
-                                    <a href="../storage/standar/{{$row->files}}" target="_blank"
+                                    <a href="/Penetapan/StandarInstitusi/folder/{{ $row->id_penetapan }}" target="_blank"
                                         class="badge bg-label-info me-1">
                                         <i class="bi bi-link-45deg">Dokumen</i>
                                     </a>

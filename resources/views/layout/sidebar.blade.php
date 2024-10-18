@@ -233,7 +233,6 @@
 
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-
     <script>
         $(document).ready(function() {
             $('#Datatable').DataTable({
@@ -248,6 +247,49 @@
             });
         });
     </script>
+
+<script>
+    $(document).ready(function() {
+        // Saat halaman pertama kali dimuat, tampilkan tabel default
+        showTable('DatatablesRenstraProgramStudinya');
+    });
+
+    function showTable(tableId) {
+        console.log(tableId);
+
+        // Sembunyikan semua div yang berisi tabel
+        var tables = document.querySelectorAll('[id^="Datatables"]');
+        tables.forEach(function(tableDiv) {
+            // Cari elemen <table> di dalam div yang tersembunyi
+            var tableElement = $(tableDiv).find('table').DataTable();
+            if (tableElement) {
+                tableElement.destroy();  // Hapus inisialisasi DataTables sebelum menyembunyikan tabel
+            }
+            tableDiv.style.display = 'none';  // Sembunyikan semua tabel
+        });
+
+        // Tampilkan div yang sesuai dengan ID yang diklik
+        var selectedTableDiv = document.getElementById(tableId);
+        if (selectedTableDiv) {
+            selectedTableDiv.style.display = 'block';
+
+            // Inisialisasi ulang DataTable hanya pada elemen <table> di dalam div yang ditampilkan
+            $(selectedTableDiv).find('table').DataTable({
+                "language": {
+                    "paginate": {
+                        "previous": "Sebelumnya",
+                        "next": "Selanjutnya"
+                    },
+                    "search": "Cari:",
+                    "lengthMenu": "Tampilkan _MENU_ entri"
+                }
+            });
+        }
+    }
+</script>
+
+
+
 
     {{-- <!-- JQuery dan Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

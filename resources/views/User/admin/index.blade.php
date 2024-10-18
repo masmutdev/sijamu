@@ -75,10 +75,15 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title d-flex align-items-start justify-content-between">
-                        <div class="avatar flex-shrink-0" style="width: 25px; height: 25px;">
-                            <img src="{{ asset('sneat/assets/img/icons/unicons/checklist.png') }}" alt="Credit Card"
-                                class="rounded" />
-                        </div>
+                        @if($fileP1Check)
+                            <div class="avatar flex-shrink-0" style="width: 25px; height: 25px;">
+                                <img src="{{ asset('sneat/assets/img/icons/unicons/caution-alert.png') }}" alt="Caution Alert" class="rounded" />
+                            </div>
+                        @else
+                            <div class="avatar flex-shrink-0" style="width: 25px; height: 25px;">
+                                <img src="{{ asset('sneat/assets/img/icons/unicons/checklist.png') }}" alt="Checklist" class="rounded" />
+                            </div>
+                        @endif
                         <div class="dropdown">
                             <button class="btn p-0" type="button" id="cardOpt6" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -123,10 +128,15 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title d-flex align-items-start justify-content-between">
-                        <div class="avatar flex-shrink-0" style="width: 25px; height: 25px;">
-                            <img src="{{ asset('sneat/assets/img/icons/unicons/caution-alert.png') }}" alt="Credit Card"
-                                class="rounded" />
-                        </div>
+                        @if($fileEvalCheck)
+                            <div class="avatar flex-shrink-0" style="width: 25px; height: 25px;">
+                                <img src="{{ asset('sneat/assets/img/icons/unicons/caution-alert.png') }}" alt="Caution Alert" class="rounded" />
+                            </div>
+                        @else
+                            <div class="avatar flex-shrink-0" style="width: 25px; height: 25px;">
+                                <img src="{{ asset('sneat/assets/img/icons/unicons/checklist.png') }}" alt="Checklist" class="rounded" />
+                            </div>
+                        @endif
                         <div class="dropdown">
                             <button class="btn p-0" type="button" id="cardOpt6" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -147,10 +157,15 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title d-flex align-items-start justify-content-between">
-                        <div class="avatar flex-shrink-0" style="width: 25px; height: 25px;">
-                            <img src="{{ asset('sneat/assets/img/icons/unicons/checklist.png') }}" alt="Credit Card"
-                                class="rounded" />
-                        </div>
+                        @if($fileP4Check)
+                            <div class="avatar flex-shrink-0" style="width: 25px; height: 25px;">
+                                <img src="{{ asset('sneat/assets/img/icons/unicons/caution-alert.png') }}" alt="Caution Alert" class="rounded" />
+                            </div>
+                        @else
+                            <div class="avatar flex-shrink-0" style="width: 25px; height: 25px;">
+                                <img src="{{ asset('sneat/assets/img/icons/unicons/checklist.png') }}" alt="Checklist" class="rounded" />
+                            </div>
+                        @endif
                         <div class="dropdown">
                             <button class="btn p-0" type="button" id="cardOpt6" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -171,10 +186,15 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title d-flex align-items-start justify-content-between">
-                        <div class="avatar flex-shrink-0" style="width: 25px; height: 25px;">
-                            <img src="{{ asset('sneat/assets/img/icons/unicons/caution-alert.png') }}" alt="Credit Card"
-                                class="rounded" />
-                        </div>
+                        @if($fileP5Check)
+                            <div class="avatar flex-shrink-0" style="width: 25px; height: 25px;">
+                                <img src="{{ asset('sneat/assets/img/icons/unicons/caution-alert.png') }}" alt="Caution Alert" class="rounded" />
+                            </div>
+                        @else
+                            <div class="avatar flex-shrink-0" style="width: 25px; height: 25px;">
+                                <img src="{{ asset('sneat/assets/img/icons/unicons/checklist.png') }}" alt="Checklist" class="rounded" />
+                            </div>
+                        @endif
                         <div class="dropdown">
                             <button class="btn p-0" type="button" id="cardOpt6" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">

@@ -44,17 +44,17 @@ class pengendalianController extends Controller
                 'bidang_standar' => 'required|string',
                 'manual_namaDokumen' => 'nullable|string',
                 'nama_prodi' => 'nullable|string',
-                'laporan_rtm.*' => 'nullable|mimes:doc,docx,xls,xlsx,pdf|max:2048', // Validasi file RTM
-                'laporan_rtl.*' => 'nullable|mimes:doc,docx,xls,xlsx,pdf|max:2048', // Validasi file RTL
+                'laporan_rtm.*' => 'nullable|mimes:doc,docx,xls,xlsx,pdf|max:2048',
+                'laporan_rtl.*' => 'nullable|mimes:doc,docx,xls,xlsx,pdf|max:2048',
             ]);
 
-            // Menentukan nama dokumen, apakah dari dropdown atau input manual
+            // Menentukan nama dokumen
             $namaDokumen = $validatedData['bidang_standar'];
             if ($namaDokumen === 'Dokumen Lainnya' && $request->filled('manual_namaDokumen')) {
                 $namaDokumen = $request->input('manual_namaDokumen');
             }
 
-            // Simpan data ke tabel pengendalian menggunakan query builder
+            // Simpan data ke tabel pengendalian
             $idPengendalian = DB::table('pengendalians')->insertGetId([
                 'bidang_standar' => $validatedData['bidang_standar'],
                 'nama_prodi' => $validatedData['nama_prodi'],
@@ -62,7 +62,7 @@ class pengendalianController extends Controller
                 'updated_at' => now(),
             ]);
 
-            // Inisialisasi variabel untuk menyimpan ID dari file yang diupload ke file_p4
+            // Variabel untuk menyimpan ID file
             $fileIdRTM = null;
             $fileIdRTL = null;
 
@@ -72,9 +72,9 @@ class pengendalianController extends Controller
                     $namaFileRTM = time() . '-' . $file->getClientOriginalName();
                     $file->storeAs('laporan_rtm', $namaFileRTM, 'public');
 
-                    // Simpan nama file ke tabel file_p4 di kolom 'files' dan ambil id dari insert
+                    // Simpan nama file RTM ke tabel file_p4
                     $fileIdRTM = DB::table('file_p4')->insertGetId([
-                        'files' => $namaFileRTM,     // Nama file RTM yang diunggah ke kolom 'files'
+                        'files' => $namaFileRTM,
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
@@ -87,47 +87,38 @@ class pengendalianController extends Controller
                     $namaFileRTL = time() . '-' . $file->getClientOriginalName();
                     $file->storeAs('laporan_rtl', $namaFileRTL, 'public');
 
-                    // Simpan nama file ke tabel file_p4 di kolom 'files2' dan ambil id dari insert
+                    // Simpan nama file RTL ke tabel file_p4
                     $fileIdRTL = DB::table('file_p4')->insertGetId([
-                        'files2' => $namaFileRTL,     // Nama file RTL yang diunggah ke kolom 'files2'
+                        'files2' => $namaFileRTL,
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
                 }
             }
 
-            // Setelah file tersimpan, simpan nama dokumen ke tabel nama_file_p4
-            // Pastikan untuk menyimpan dengan file RTM dan RTL yang diunggah ke kolom yang benar
-            if ($fileIdRTM) {
+            // Simpan nama dokumen ke tabel nama_file_p4
+            // Pastikan nama file disimpan bahkan jika file tidak diupload
+            if ($fileIdRTM || $fileIdRTL) {
                 DB::table('nama_file_p4')->insert([
-                    'nama_filep4' => $namaDokumen,  // Nama dokumen yang disimpan
-                    'id_pengendalian' => $idPengendalian, // Mengambil id_pengendalian dari tabel pengendalian
-                    'id_fp4' => $fileIdRTM,            // Mengaitkan dengan file RTM di file_p4 (files)
+                    'nama_filep4' => $namaDokumen,
+                    'id_pengendalian' => $idPengendalian,
+                    'id_fp4' => $fileIdRTM ?? $fileIdRTL, // Gunakan id file RTM atau RTL
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
             }
 
-            if ($fileIdRTL) {
-                DB::table('nama_file_p4')->insert([
-                    'nama_filep4' => $namaDokumen,  // Nama dokumen yang disimpan
-                    'id_pengendalian' => $idPengendalian, // Mengambil id_pengendalian dari tabel pengendalian
-                    'id_fp4' => $fileIdRTL,            // Mengaitkan dengan file RTL di file_p4 (files2)
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
-            }
-
-            // Tampilkan pesan sukses
-            Alert::success('success', 'Data pengendalian dan dokumen berhasil ditambahkan.');
-            return redirect()->route('pengendalian');  // Ubah dengan route yang sesuai
+            // Pesan sukses
+            Alert::success('success', 'Data pengendalian berhasil ditambahkan.');
+            return redirect()->route('pengendalian');
 
         } catch (\Exception $e) {
-            // Menangkap semua error dan menampilkan pesan kesalahan
+            // Tangani error
             Alert::error('error', 'Terjadi kesalahan: ' . $e->getMessage());
             return redirect()->back()->withInput();
         }
     }
+
 
     public function lihatdokumenevaluasi($id_pengendalian)
     {

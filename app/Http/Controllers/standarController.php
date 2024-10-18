@@ -37,15 +37,25 @@ class standarController extends Controller
 
     public function folder($id)
     {
-        $standar = Penetapan::with('fileP1', 'namaFileP1')
-        ->join('file_p1', 'penetapans.id_nfp1', '=', 'file_p1.id_fp1')
-        ->join('nama_file_p1', 'nama_file_p1.id_fp1', '=', 'file_p1.id_fp1')
-        ->select('penetapans.id_penetapan', 'penetapans.submenu_penetapan', 'nama_file_p1.nama_filep1', 'file_p1.files')
-        ->where('id_penetapan', $id)
-        ->first();
-        $files = unserialize($standar->files);
-        return view('User.admin.Penetapan.folder_dokumen.dokumen_standarpendidikan', compact('standar', 'files'));
+        $data = collect(DB::table('penetapans')
+            ->select(
+                'penetapans.id_penetapan',
+                'penetapans.submenu_penetapan',
+                'penetapans.id_nfp1',
+                'penetapans.id_fp1',
+                'nama_file_p1.nama_filep1',  // Ambil nama_filep1 dari tabel nama_file_p1
+                'file_p1.files'  // Ambil files dari tabel file_p1
+            )
+            ->join('nama_file_p1', 'penetapans.id_nfp1', '=', 'nama_file_p1.id_nfp1')  // Join ke nama_file_p1 berdasarkan id_nfp1
+            ->join('file_p1', 'penetapans.id_fp1', '=', 'file_p1.id_fp1')  // Join ke file_p1 berdasarkan id_fp1
+            ->where('penetapans.id_penetapan', '=', $id)  // Kondisi untuk mencari berdasarkan id_penetapan
+            ->get());  // Mengambil seluruh data (collection)
+
+
+        return view('User.admin.Penetapan.folder_dokumen.dokumen_standarpendidikan', compact('data'));
     }
+
+
 
     public function create($id)  //tombol Unggah | $id: mengambil data id di row tabel standarinstitusi.blade // first: mengambil satu data dari satu row
     {

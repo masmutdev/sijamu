@@ -71,20 +71,25 @@
     <div class="card">
         <h5 class="card-header">Standar Yang Ditetapkan Institusi</h5>
         <div class="col-lg-6 mb-xl-0 mb-4">
-            <small class="text-gray fw-semibold" style="margin-left: 5px">Dokumen
-                {{ $standar->namaDokumen_penetapan }}</small>
-            <div class="demo-inline-spacing mt-3">
-                <ol class="list-group list-group-numbered" style="margin-bottom: 10px">
-                    @foreach ($files as $file)
-                        <li class="list-group-item">
-                            <a href="/standarinstitusi/{{ $file }}" class="badge bg-label-info me-1" target="_blank">
-                                <i class="bi bi-link-45deg">{{ $file }}</i>
-                            </a>
-                        </li>
-                    @endforeach
-                </ol>
-            </div>
+            @if(count($data) == 0)
+                <p>Belum Ada Dokumen</p>
+            @else
+                @foreach ($data as $item)
+                    <small class="text-gray fw-semibold" style="margin-left: 5px">Dokumen: {{ $item->nama_filep1 }}</small>
+                    <div class="demo-inline-spacing mt-3">
+                        <ol class="list-group list-group-numbered" style="margin-bottom: 10px">
+                            <li class="list-group-item">
+                                <a href="/standarinstitusi/{{ $item->files }}" class="badge bg-label-info me-1" target="_blank">
+                                    <i class="bi bi-link-45deg">{{ $item->files }}</i>
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
-    </div>
 @endsection
+
+
+

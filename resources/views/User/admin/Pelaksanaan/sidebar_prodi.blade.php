@@ -91,42 +91,28 @@
                                 <div class="card-body left" id="vertical-example">
                                     <div><b>Strategi Pencapaian</b></div>
                                     <ul>
-                                        <li style="font-size: 12px"><a href="menuProdi/">Renstra Program
-                                                Studi</a>
+                                        <li style="font-size: 12px">
+                                            <a href="javascript:void(0);" onclick="showTable('DatatablesRenstraProgramStudinya')">Renstra Program Studi</a>
                                         </li>
-                                        <li style="font-size: 12px"><a href="menuProdi/">Laporan Kinerja Program Studi</a>
-                                    </li>
+                                        <li style="font-size: 12px">
+                                            <a href="javascript:void(0);" onclick="showTable('DatatablesKinerjaProgramStudinya')">Laporan Kinerja Program Studi</a>
+                                        </li>
                                     </ul>
-                                    <div><b>Standar Proses Pembelajaran</b>
-                                        <ul>
-                                            <li style="font-size: 12px"><a href="menuProdi/">Dokumen Kurikulum</a></li>
-                                            <li style="font-size: 12px"><a href="menuProdi/">Rencana Pembelajaran
-                                                    Semester
-                                                    (RPS)</a></li>
-                                            <li style="font-size: 12px"><a href="menuProdi/">Dokumen Monitoring dan
-                                                    Evaluasi Kegiatan Program MBKM
-                                                </a></li>
-                                            <li style="font-size: 12px"><a href="menuProdi/">Capaian Pembelajaran Lulusan
-                                                    (CPL)
-                                                </a></li>
-                                            <li style="font-size: 12px"><a href="menuProdi/">Panduan RPS
-                                                </a></li>
-                                            <li style="font-size: 12px"><a href="menuProdi/">Panduan Mutu Soal
-                                                </a></li>
-                                            <li style="font-size: 12px"><a href="menuProdi/">Panduan Kisi Kisi Soal
-                                                </a></li>
-                                        </ul>
-                                    </div>
-                                    <div><b>Standar Layanan Kemahasiswaan</b>
-                                        <ul>
-                                            <li style="font-size: 12px"><a href="menuProdi/">Formulir Kepuasan
-                                                    Mahasiswa</a>
-                                            </li>
-                                            <li style="font-size: 12px"><a href="menuProdi/">Dokumen Monitoring
-                                                    dan Evaluasi Ketercapaian Standar Layanan Kemahasiswaan</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <div><b>Standar Proses Pembelajaran</b></div>
+                                    <ul>
+                                        <li style="font-size: 12px"><a href="javascript:void(0);" onclick="showTable('DatatablesKurikulum')">Dokumen Kurikulum</a></li>
+                                        <li style="font-size: 12px"><a href="javascript:void(0);" onclick="showTable('DatatablesRPS')">Rencana Pembelajaran Semester (RPS)</a></li>
+                                        <li style="font-size: 12px"><a href="javascript:void(0);" onclick="showTable('DatatablesMonitoring')">Dokumen Monitoring dan Evaluasi Kegiatan Program MBKM</a></li>
+                                        <li style="font-size: 12px"><a href="javascript:void(0);" onclick="showTable('DatatablesCPL')">Capaian Pembelajaran Lulusan (CPL)</a></li>
+                                        <li style="font-size: 12px"><a href="javascript:void(0);" onclick="showTable('DatatablesPanduanRPS')">Panduan RPS</a></li>
+                                        <li style="font-size: 12px"><a href="javascript:void(0);" onclick="showTable('DatatablesPanduanMutuSoal')">Panduan Mutu Soal</a></li>
+                                        <li style="font-size: 12px"><a href="javascript:void(0);" onclick="showTable('DatatablesPanduanKisi')">Panduan Kisi Kisi Soal</a></li>
+                                    </ul>
+                                    <div><b>Standar Layanan Kemahasiswaan</b></div>
+                                    <ul>
+                                        <li style="font-size: 12px"><a href="javascript:void(0);" onclick="showTable('DatatablesFormulirKepuasan')">Formulir Kepuasan Mahasiswa</a></li>
+                                        <li style="font-size: 12px"><a href="javascript:void(0);" onclick="showTable('DatatablesMonitoringLayanan')">Dokumen Monitoring dan Evaluasi Ketercapaian Standar Layanan Kemahasiswaan</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
